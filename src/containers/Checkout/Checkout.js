@@ -4,8 +4,15 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
 import ContactData from "./ContactData/ContactData";
+import Modal from "../../components/UI/Modal/Modal";
+import Aux from "../../hoc/Auxx/Auxx";
 
 class Checkout extends Component {
+  state = {
+    show: true,
+    redirect:null
+  };
+
   componentDidMount() {
     this.props.onInitPurchase();
   }
@@ -18,14 +25,27 @@ class Checkout extends Component {
     this.props.history.replace("/checkout/contact-data");
   };
 
+  modalCloseHandler = () => {
+    this.setState({
+      show: !this.state.show,
+      redirect:<Redirect to="/"/>
+    });
+  };
+
   render() {
     {
       console.log(this.props.purchased);
     }
     let summary = <Redirect to="/" />;
     if (this.props.ings) {
+      let redirect=null;
       const purchasedRedirect = this.props.purchased ? (
-        <Redirect to="/" />
+        <Aux>
+        <Modal show={this.state.show} modalClosed={this.modalCloseHandler} text="center">
+          Your Order placed SuccessFully
+        </Modal>
+        {this.state.redirect}
+        </Aux>
       ) : null;
       summary = (
         <div>

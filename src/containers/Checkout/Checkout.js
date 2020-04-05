@@ -10,7 +10,7 @@ import Aux from "../../hoc/Auxx/Auxx";
 class Checkout extends Component {
   state = {
     show: true,
-    redirect:null
+    redirect: null
   };
 
   componentDidMount() {
@@ -28,23 +28,24 @@ class Checkout extends Component {
   modalCloseHandler = () => {
     this.setState({
       show: !this.state.show,
-      redirect:<Redirect to="/"/>
+      redirect: <Redirect to="/" />
     });
   };
 
   render() {
-    {
-      console.log(this.props.purchased);
-    }
     let summary = <Redirect to="/" />;
     if (this.props.ings) {
-      let redirect=null;
+      let redirect = null;
       const purchasedRedirect = this.props.purchased ? (
         <Aux>
-        <Modal show={this.state.show} modalClosed={this.modalCloseHandler} text="center">
-          Your Order placed SuccessFully
-        </Modal>
-        {this.state.redirect}
+          <Modal
+            show={this.state.show}
+            modalClosed={this.modalCloseHandler}
+            text="center"
+          >
+            Your Order placed SuccessFully
+          </Modal>
+          {this.state.redirect}
         </Aux>
       ) : null;
       summary = (

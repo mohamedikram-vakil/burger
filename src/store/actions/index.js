@@ -1,7 +1,12 @@
 export {
   addIngredient,
   removeIngredient,
-  initIngredients
+  initIngredients,
 } from "./burgerBuilder";
-export { purchaseBurgerStart, purchaseBurger, purchaseInit,fetchOrder } from "./order";
-export {auth} from "./auth";
+export {
+  purchaseBurgerStart,
+  purchaseBurger,
+  purchaseInit,
+  fetchOrder,
+} from "./order";
+export { auth, authLogout, setAuthRedirect, authCheckState } from "./auth";
